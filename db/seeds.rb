@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+10.times do
+    initials = Faker::Name.initials(number:2)
+    last = Faker::Name.last_name 
+    author_name = initials + ". " + last
+    Book.create(
+        title:Faker::Coffee.blend_name,
+        author:author_name,
+    )
+end
