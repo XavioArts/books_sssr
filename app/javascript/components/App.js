@@ -47,7 +47,7 @@ const App = () => {
             <button onClick={toggleForm}>
                 {formVis ? "Cancel" : "New Book"}
             </button>
-            {formVis && <BookForm addBook={addBook}/>}
+            {formVis && <BookForm addBook={addBook} toggleForm={toggleForm}/>}
             <Books books={books} updateBook={updateBook} deleteBook={deleteBook}/>
         </div>
     );

@@ -16,7 +16,7 @@ const Book = (props) => {
             <button onClick={toggleForm}>
                 {formVis ? "Cancel" : "Edit Book"}
             </button>
-            {formVis && <BookForm id ={id} title={title} author={author} updateBook={updateBook}/>}
+            {formVis && <BookForm id ={id} title={title} author={author} updateBook={updateBook} toggleForm={toggleForm}/>}
             <button onClick={() => deleteBook(id)}>Delete this book</button>
         </div>
     );

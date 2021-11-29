@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 
 const BookForm = (props) => {
-    const {id, addBook, title: initTitle, author: initAuthor, updateBook} = props;
+    const {id, addBook, title: initTitle, author: initAuthor, updateBook, toggleForm} = props;
     const [title, setTitle] = useState(initTitle ? initTitle : "");
     const [author, setAuthor] = useState(initAuthor ? initAuthor : "");
     // using ternary to determine if an initial value exists, if so use that value. 
@@ -18,6 +18,7 @@ const BookForm = (props) => {
             let result = await axios.post("/books", book);
             addBook(result.data);
         }
+        toggleForm();
     };
 
     return (
