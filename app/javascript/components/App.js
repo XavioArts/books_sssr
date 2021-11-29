@@ -22,6 +22,10 @@ const App = () => {
         setFormVis(!formVis);
     };
 
+    const addBook = (book) => {
+        setBooks([...books, book]);
+    };
+
     return (
         <div>
             <div style={appStyle.container}>
@@ -30,7 +34,7 @@ const App = () => {
             <button onClick={toggleForm}>
                 {formVis ? "Cancel" : "New Book"}
             </button>
-            {formVis && <BookForm />}
+            {formVis && <BookForm addBook={addBook}/>}
             <Books books={books} />
         </div>
     );
