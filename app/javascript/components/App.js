@@ -26,6 +26,19 @@ const App = () => {
         setBooks([...books, book]);
     };
 
+    const updateBook = (book) => {
+        let editedBooks = books.map((bk) => (bk.id === book.id ? book : bk));
+        setBooks(editedBooks);
+    };
+
+    const deleteBook = async (id) => {
+        let result = await axios.delete(`/books/${id}`);
+        //this actually delets from database
+        let newBooks = books.filter((bk) => bk.id !== id);
+        setBooks(newBooks);
+        // this updates the ui
+    };
+
     return (
         <div>
             <div style={appStyle.container}>
@@ -35,7 +48,7 @@ const App = () => {
                 {formVis ? "Cancel" : "New Book"}
             </button>
             {formVis && <BookForm addBook={addBook}/>}
-            <Books books={books} />
+            <Books books={books} updateBook={updateBook} deleteBook={deleteBook}/>
         </div>
     );
 };

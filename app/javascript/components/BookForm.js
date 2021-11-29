@@ -2,16 +2,22 @@ import React, {useState} from "react";
 import axios from "axios";
 
 const BookForm = (props) => {
-    const {id, addBook} = props;
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
+    const {id, addBook, title: initTitle, author: initAuthor, updateBook} = props;
+    const [title, setTitle] = useState(initTitle ? initTitle : "");
+    const [author, setAuthor] = useState(initAuthor ? initAuthor : "");
+    // using ternary to determine if an initial value exists, if so use that value. 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         // makes sure the submit does not reload the page
         const book = {title: title, author: author};
-        let result = await axios.post("/books", book);
-        addBook(result.data);
+        if (id) {
+            let result = await axios.put(`/books/${id}`, book);
+            updateBook(result.data);
+        } else {
+            let result = await axios.post("/books", book);
+            addBook(result.data);
+        }
     };
 
     return (
